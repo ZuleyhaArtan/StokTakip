@@ -1,0 +1,58 @@
+﻿@model List<Stok_Takip.Models.Entity.Markalar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Marka Listesi</h2>
+<table class="table">
+    <thead style="background-color:mediumaquamarine">
+        <tr>
+            <th>
+
+                ID
+            </th>
+            <th>
+                Kategori
+
+            </th>
+            <th>
+                Marka
+
+            </th>
+            <th>
+                
+
+            </th>
+            <th>
+                
+
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {  
+            
+        <tr>
+            <th>
+                @item.ID
+
+            </th>
+            <td> @item.Kategoriler.Kategori</td>
+            <td>@item.Marka</td>
+            <td><a href="/Markalar/Sil/@item.ID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Markalar/Guncelle/@item.ID" class="btn btn-primary">Güncelle</a></td>
+
+
+        </tr>
+
+        }
+
+    </tbody>
+
+
+</table>
+<a href="/Markalar/Ekle/" class="btn btn-success">Marka Ekle</a>
+

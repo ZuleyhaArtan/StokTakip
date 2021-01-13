@@ -1,0 +1,86 @@
+﻿@model List<Stok_Takip.Models.Entity.Urunler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ürün Listesi</h2>
+
+<table class="table" id="urun">
+    <thead style="background-color:mediumaquamarine">
+        <tr>
+            <th>ID</th>
+            <th>Kategori</th>
+            <th>Marka</th>
+            <th>Ürün Adı</th>
+            <th>Barkod No</th>
+            <th>Alış Fiyatı</th>
+            <th>Satış Fiyatı</th>
+            <th>Miktari</th>
+            <th>K.D.V</th>
+            <th>Birim</th>
+            <th>Tarih</th>
+            <th></th>
+            <th></th>
+
+        </tr>
+
+
+
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <th>@Html.DisplayFor(x => item.ID)</th>
+            <td>@Html.DisplayFor(x => item.Kategoriler.Kategori)</td>
+            <td>@Html.DisplayFor(x => item.Markalar.Marka)</td>
+            <td>@Html.DisplayFor(x => item.UrunAdi)</td>
+            <td>@Html.DisplayFor(x => item.BarkodNo)</td>
+            <td>@Html.DisplayFor(x => item.AlisFiyati)</td>
+            <td>@Html.DisplayFor(x => item.SatisFiyati)</td>
+            <td>@Html.DisplayFor(x => item.Miktari)</td>
+
+            <td>% @Html.DisplayFor(x => item.KDV)</td>
+            <td>@Html.DisplayFor(x => item.Birimler.Birimler1)</td>
+            <td>@Html.DisplayFor(x => item.Tarih)</td>
+            @*<td>@Html.ActionLink("Sil", "SilBilgi", new { id = item.ID }, new { @class = "btn btn-danger" })</td>*@
+            <td><input type="submit" name="btn" value="sil" class="btn btn-danger btnsil" data-id="@item.ID"/></td>
+            <td>@Html.ActionLink("Guncelle", "GuncelleBilgi", new { id = item.ID }, new { @class = "btn btn-primary" })</td>
+
+
+
+        </tr>
+        }
+    </tbody>
+</table>
+<a href="/Urunler/Ekle/" class="btn btn-success">Ürün Ekle </a>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#urun").on("click", ".btnsil", function () {
+
+            var btn = $(this);
+            bootbox.confirm(btn.data("id") + "nolu ID kaydı silinsin mi?", function (result) {
+
+                if (result) {
+                    var id = btn.data("id");
+                    $.ajax({
+                        type: "GET",
+                        url: "/Urunler/Sil",
+                        data: { id: id },
+                        success: function () {
+                            btn.parent().parent().remove();
+                        }
+
+
+                    });
+                }
+            });
+
+        });
+    });
+
+
+</script>

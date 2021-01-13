@@ -1,0 +1,26 @@
+﻿@model Stok_Takip.Models.Entity.Kategoriler
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Güncelle</h2>
+
+<div class="container">
+    <form action="/Kategoriler/Guncelleme/">
+
+        @Html.HiddenFor(x => x.ID)
+        <div class=" form-group">
+
+            <b>Kategori</b>
+
+            @Html.TextBoxFor(x => x.Kategori, new { @class = "form-control" })
+
+
+        </div>
+        <div><button class="btn btn-primary">Kategori Güncelle</button></div>
+
+
+    </form>
+   
+</div>
