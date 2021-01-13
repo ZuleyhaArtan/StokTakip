@@ -1,0 +1,2 @@
+# StokTakip
+ Asp.Net C# 
